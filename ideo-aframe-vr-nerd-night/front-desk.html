@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <title>IDEO SF Panorama - Front Desk</title>
+
+    <!-- hide browser chrome if site is saved to home screen on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="js/aframe.js"></script>
+    <script src="js/aframe-no-click-look-controls.min.js"></script>
+
+  </head>
+
+  <body>
+    <a-scene>
+
+      <!-- point a-sky element to spherical image -->
+      <a-sky src="img/panos/front-desk.jpg" rotation="0 220 0"></a-sky>
+
+      <!-- camera & cursor -->
+      <a-entity camera no-click-look-controls="maxyaw:3.5; maxpitch:1.5">
+
+        <a-entity cursor="fuse: true; maxDistance: 30; timeout: 1000"
+                  geometry="primitive: ring"
+                  position="0 0 -1"
+                  scale=".035 .035 .035"
+                  material="color: white; shader: flat">
+        </a-entity>
+
+      </a-entity><!-- /.camera & cursor -->
+
+      <!-- lookout sign -->
+      <a-entity id="lookout"
+                position="10 0 -1"
+                rotation="0 -80 0"
+                geometry="primitive: plane; height: 1; width: 2.92;"
+                material="src: url(img/icons/lookout.png) opacity: .5; transparent: true;">
+      </a-entity><!-- /.lookout sign -->
+
+    </a-scene><!-- /.a-scene -->
+
+    <!-- JavaScript `click` & `mouseleave` events -->
+    <script>
+
+      document.querySelector('#lookout').addEventListener('click', function () {
+        console.log('click lookout');
+        location.assign("index.html");
+      });
+
+      document.querySelector('#lookout').addEventListener('mouseleave', function () {
+        console.log('leave lookout');
+      });
+
+      // open new pages in home screen web app on iOS, not in mobile safari
+      (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")
+
+    </script>
+
+  </body>
+
+</html>

@@ -1,0 +1,14 @@
+Download the free ‘Blender’ software:
+
+https://www.blender.org/download/
+
+Open `environment.blend` in blender
+
+In the `Render` palette, click `Animation`.
+
+Rename 0001.png to front.png
+Rename 0002.png to left.png
+Rename 0003.png to back.png
+Rename 0004.png to right.png
+Rename 0005.png to bottom.png
+Rename 0006.png to top.png

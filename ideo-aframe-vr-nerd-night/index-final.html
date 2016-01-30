@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <title>IDEO SF Panorama - Lookout</title>
+
+    <style>
+      body {
+        cursor: none;
+      }
+    </style>
+
+    <!-- hide browser chrome if site is saved to home screen on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <script src="js/aframe.js"></script>
+    <script src="js/aframe-no-click-look-controls.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <a-scene>
+
+      <!-- point a-sky element to spherical image -->
+      <a-sky src="img/panos/lookout.jpg" rotation="0 0 0"></a-sky>
+
+      <!-- camera & cursor -->
+      <a-entity camera no-click-look-controls="maxyaw:3.5; maxpitch:1.5">
+
+        <a-entity cursor="fuse: true; maxDistance: 30; timeout: 1000"
+                  geometry="primitive: ring"
+                  position="0 0 -1"
+                  scale=".035 .035 .035"
+                  material="color: white; shader: flat">
+        </a-entity>
+
+      </a-entity><!-- /.camera & cursor -->
+
+      <a-entity id="cube"
+                position="-2 -1 -3"
+                rotation="0 0 0"
+                geometry="primitive: box; height: 1; width: 1; depth: 1;"
+                material="color: #FF0; opacity: .25; metalness: 0.5;">
+
+        <a-animation attribute="material.opacity" begin="fadeInCube" to="1" dur="1000"></a-animation>
+        <a-animation attribute="material.opacity" begin="fadeOutCube" to=".25" dur="1000"></a-animation>
+
+      </a-entity><!-- /.cube -->
+
+      <!-- front desk sign -->
+      <a-entity id="front-desk"
+                position="10 1.4 -4"
+                rotation="0 -75 0"
+                geometry="primitive: plane; height: 1; width: 3.48;"
+                material="src: url(img/icons/front-desk.png) opacity: .5; transparent: true;">
+      </a-entity><!-- /.front desk sign -->
+
+    </a-scene><!-- /.a-scene -->
+
+    <script>
+
+      document.querySelector('#cube').addEventListener('click', function () {
+        document.querySelector('#cube').emit('fadeInCube');
+        console.log('click cube');
+      });
+
+      document.querySelector('#cube').addEventListener('mouseleave', function () {
+        document.querySelector('#cube').emit('fadeOutCube');
+        console.log('leave cube');
+      });
+
+      document.querySelector('#front-desk').addEventListener('click', function () {
+        console.log('click front desk');
+        location.assign("front-desk.html");
+      });
+
+      document.querySelector('#front-desk').addEventListener('mouseleave', function () {
+        console.log('leave front desk');
+      });
+
+      // open new pages in home screen web app on iOS, not in mobile safari
+      (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")
+
+    </script>
+
+  </body>
+
+</html>
