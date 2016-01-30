@@ -35,7 +35,7 @@ window.onresize = ->
 	vr.size = Screen.size
 ```
 
-** _**Btw, wtf is a 'cube map?'**_
+_**Btw, wtf is a 'cube map?'**_
 
 ![cube map](images/cube-map.png)
 
@@ -252,7 +252,7 @@ If you open Chrome's console `View > Developer > Javascript Console` or `⌥⌘J
 
 For a better user experience for your VR prototypes on iOS, you can upload them to the web and save the page to the home screen of your phone to view them fullscreen, with no browser chrome (this effect is achieved via the `<meta>` tag toward the top of our pages). However, clicking links to other web pages in home screen web apps launches Mobile Safari to open the new page.
 
-This is, of course, a miserable user experience. To resolve this and ensure that the pages are instead opened in your home screen web app, add the following JavaScript just before the closing `</script>` tag:
+This is, of course, a terrible user experience. To resolve this and ensure that the pages are instead opened in your home screen web app, add the following JavaScript just before the closing `</script>` tag:
 
 ```
 // open new pages in home screen web app on iOS, not in mobile safari
@@ -279,7 +279,7 @@ This is, of course, a miserable user experience. To resolve this and ensure that
 
 As Dav's presence and shared expertise shows, Nerd Night is not at all about me. Rather, it's about our community of minds being more deliberate about sharing what we know, particularly when it comes to new technologies & methodologies we're excited about; those that help us all to become better designers and to do new & interesting project work.
 
-I've already spoken with Paulo and Mel about hosting a Nerd Night workshop on Facebook's excellent [React](https://facebook.github.io/react/) framework. React comes in two flavors, original and [React Native](https://facebook.github.io/react-native/), the latter technology being a means through which everyone here w/ web dev chops can be leveraged to write native iOS & Android apps using JavaScript (the layout of React Native apps is even done in Flexbox).
+I've already spoken with Paulo and Mel about hosting a Nerd Night workshop on Facebook's excellent [React](https://facebook.github.io/react/) framework. React comes in two flavors, original and [React Native](https://facebook.github.io/react-native/). The latter technology allows anyone w/ web dev chops to write native iOS & Android apps using JavaScript (the layout of React Native apps is even done in Flexbox).
 
 If you have or happen upon something you'd like to share, let me know. A few of us have spoken about making this a monthly get-together, which means a dozen new opportunities each year that we become a crew of even badder already bad m'f'ers.
 
