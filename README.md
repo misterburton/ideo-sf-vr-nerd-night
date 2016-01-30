@@ -1,10 +1,10 @@
 # IDEO SF VR Nerd Night in 3 Acts
 
-## VR Prototyping x2 Approaches + VR Editorial & Effects Pipeline
+## VR Prototyping x2 + VR Editorial & Effects Pipeline
 
 ### Overview
 
-First, Burton will take us through a pair of methodologies for creating multi-device, web-based, Virtual Reality prototypes via the new WebVR API. Then, Dav will walk us through his preferred editorial and effects pipeline for crafting VR motion content.
+First, Burton will cover a pair of methodologies for creating multi-device, web-based, Virtual Reality prototypes via the new WebVR API. Then, Dav will walk us through his preferred editorial and effects pipeline for crafting VR motion content.
 
 ***
 
