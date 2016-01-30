@@ -117,7 +117,7 @@ And comment out our `print.data.heading` line by adding a `#`, like this:
 
 _Note: Framer prototypes can be immediately viewed on your movile device via [Frameless](https://itunes.apple.com/us/app/id933580264) for iOS and [Framer](https://play.google.com/store/apps/details?id=com.framerjs.android) for Android. Simply connect your mobile device and Mac to the same Wi-Fi network. Select your project, and preview your prototype in full-screen._
 
-#### References:
+#### Framer.js References:
 
 * Framer.js Blog: '[Design for Virtual Reality](http://blog.framerjs.com/posts/design-virtual-reality.html)'
 * [How to] [Create your own Environment Maps](https://aerotwist.com/tutorials/create-your-own-environment-maps/) (also called 'cube maps')
@@ -131,7 +131,7 @@ _Note: Framer prototypes can be immediately viewed on your movile device via [Fr
 #### Setup:
 
 1. Download Sublime Text 3 Trial [here](http://www.sublimetext.com/3) (or simply use whichever your preferred code editor)
-2. Download the project files we'll be workin from [here]() **<-- needs link**
+2. Download the project files we'll be workin from [here](https://github.com/misterburton/ideo-sf-vr-nerd-night/blob/master/assets/ideo-aframe-vr-nerd-night.zip?raw=true)
 3. Unzip the project files and drag the `ideo-aframe-vr-nerd-night` folder to the Sublime Text icon in either your dock or 'Applications' folder
 
 In Sublime Text, double-click both the `index.html` and `index-final.html` files in the sidebar. A review of the existing code shows we've added a `meta` tag for iOS home screen apps and imported a pair of JavaScript files:
@@ -162,6 +162,8 @@ In Sublime Text, double-click both the `index.html` and `index-final.html` files
 
 ```
 
+#### Create Navigable VR Scene:
+
 Withing the two `body` tags, add the following lines to add our lookout image to the scene:
 
 ```
@@ -174,6 +176,8 @@ Withing the two `body` tags, add the following lines to add our lookout image to
 _Note: all of the markup for our VR scene will exist w/in the 2 `a-scene` tags._
 
 Open `index.html` in your browser and click & drag to pan around the scene.
+
+#### Improving the Navigation:
 
 While VR created with A-frame is navigated on mobile by simply moving your device to 'look' around the scene, desktop browsers require that you click & drag to navigate. To create a more analogous user experience, we're going to implement the more intuitive 'no click look controls' from [Alex Kass](https://github.com/alexrkass/aframe-no-click-look-controls).
 
@@ -209,6 +213,8 @@ Having two cursors visible — both the ring that denotes what the user is looki
 </style>
 ```
 
+#### Add Interactivity:
+
 All we've yet to add, visually, is a means to navigate to another area of IDEO SF. Add the following just _above_ the closing `</a-scene>` tag:
 
 ```
@@ -242,7 +248,7 @@ That's it! I've already written the markup & JavaScript for the `front-desk.html
 
 If you open Chrome's console `View > Developer > Javascript Console` or `⌥⌘J`, you'll see our `click` and `mouseleave` events firing as you roll over & off the signs.
 
-#### Bonus:
+#### Bonus Points:
 
 For a better user experience for your VR prototypes on iOS, you can upload them to the web and save the page to the home screen of your phone to view them fullscreen, with no browser chrome (this effect is achieved via the `<meta>` tag toward the top of our pages). However, clicking links to other web pages in home screen web apps launches Mobile Safari to open the new page.
 
@@ -253,7 +259,7 @@ This is, of course, a miserable user experience. To resolve this and ensure that
 (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEvent Listener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")
 ```
 
-#### References:
+#### A-frame References:
 
 * [Mozilla A-Frame Site](https://aframe.io/) (Examples, Docs, Blog)
 * [A-Frame on Github](https://github.com/aframevr/aframe/)
@@ -262,6 +268,8 @@ This is, of course, a miserable user experience. To resolve this and ensure that
 * [WebVR Slack](https://webvr-slack.herokuapp.com/)
 * [WebVR on Reddit](https://www.reddit.com/r/webvr)
 * [No click look controls by Alex Kass](https://github.com/alexrkass/aframe-no-click-look-controls)
+
+***
 
 ### Act III: VR Editorial & Effects Pipeline w/ Dav Rauch
 
