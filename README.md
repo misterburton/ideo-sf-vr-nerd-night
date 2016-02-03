@@ -275,7 +275,11 @@ This is, of course, a terrible user experience. To resolve this and ensure that 
 
 ***
 
-## Worth noting
+## Might I suggest …
+
+Head North to IDEO Production, rent out our new Ricoh spherical camera, snap some pics & video and use them in an A-frame or Framer VR prototype that you create.
+
+## Also Worth noting
 
 As Dav's presence and shared expertise shows, Nerd Night is not at all about me. Rather, it's about our community of minds being more deliberate about sharing what we know, particularly when it comes to new technologies & methodologies we're excited about; those that help us all to become better designers and to do new & interesting project work.
 
