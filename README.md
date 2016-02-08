@@ -275,9 +275,20 @@ This is, of course, a terrible user experience. To resolve this and ensure that 
 
 ***
 
+## Putting it all together
+
+A-frame VR Scene with spherical video using [no-click-look-controls](https://github.com/alexrkass/aframe-no-click-look-controls), [play button video fix](https://github.com/gtk2k/gtk2k.github.io/tree/master/aframe_videosphere) for iOS home screen web app, icon and interactivity:
+
+[http://client.ideo.com/nerdnightvr/](http://client.ideo.com/nerdnightvr/)
+
+_Note: All of the code in this example is compiled from the above-linked, open source libraries and the A-frame [documentation](https://aframe.io/docs/guide/)._
+
+
+***
+
 ## Might I suggest …
 
-Head North to IDEO Production, rent out our new Ricoh spherical camera, snap some pics & video and use them in an A-frame or Framer VR prototype that you create.
+Most all of us learn best both by doing/making and by repetition. Head North to IDEO Production, rent out our new Ricoh spherical camera, snap some pics & video and use them in an A-frame or Framer VR prototype that you create.
 
 ## Also Worth noting
 

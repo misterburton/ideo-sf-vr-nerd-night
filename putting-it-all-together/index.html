@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dav Fam</title>
+  <meta name="description" content="Video Sphere — A-Frame">
+  <script src="js/aframe-core.js"></script>
+  <script src="js/aframe-no-click-look-controls.min.js"></script>
+  <script>
+    AFRAME.registerComponent('videospheremobile', {
+      dependencies: ['material'],
+      init: function () {
+        var self = this;
+        //this.el.sceneEl.addBehavior(this);
+        this.videoEl = document.querySelector(this.el.components.material.textureSrc);
+        if (!this.videoEl) return;
+        if (!/android|iphone|ipod|ipad/i.test(navigator.userAgent)) {
+          // pc
+          this.videoEl.play();
+          return;
+        } else {
+          // mobile
+          this.videoEl.pause(); // for simulator
+        }
+        this.videoEl.setAttribute('webkit-playsinline', true); // for inline playable some iPhone browser.
+        
+        // change a fullscreen element
+        // because fullscreen element is top most (z-Index = 2147483647)
+        this.container = document.createElement('div');
+        this.container.classList.add('videosphere-splash-container');
+        var canvas = this.el.sceneEl.canvas;
+        var parentNode = canvas.parentNode;
+        parentNode.removeChild(canvas);
+        this.container.appendChild(canvas);
+        parentNode.appendChild(this.container);
+        this.el.sceneEl.canvas = this.container
+        canvas = null;
+        parentNode = null;
+
+
+        this.el.sceneEl.canvas.onclick = function () {
+          var method = '';
+          if (self.videoEl.paused) {
+            self.videoEl.play();
+            method = 'remove';
+          } else {
+            self.videoEl.pause();
+            method = 'add';
+          }
+          self.splashes.forEach(function (splash) {
+            splash.classList[method]('pause');
+            splash.classList.add('videosphere-splash-animation');
+            splash.classList.remove('hidden');
+          })
+        };
+        this.splashes = [];
+        this.splashes.push(document.createElement('div'));
+        var splash = this.splashes[0];
+        splash.classList.add('videosphere-splash');
+        splash.addEventListener('animationend', function () {
+          self.splashes.forEach(function (splash) {
+            splash.classList.remove('videosphere-splash-animation');
+            splash.classList.add('hidden');
+          });
+        }, false);
+        this.splashes.push(this.splashes[0].cloneNode());
+        this.splashes[1].classList.add('right');
+        this.container.appendChild(this.splashes[0]);
+        this.container.appendChild(this.splashes[1]);
+
+        document.addEventListener("webkitfullscreenchange", function () {
+          self.splashes.forEach(function (splash) {
+            !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullscreenElement) && splash.classList.add('vrmode');
+          });
+        }, false);
+      }
+    });
+  </script>
+  <style>
+    body {
+      cursor: none;
+    }
+    .videosphere-splash-container{
+      position:absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:100%;
+    }
+    .videosphere-splash {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100px;
+      height: 100px;
+      margin: -50px auto auto -50px;
+      background-image: url(icon/ic_play_arrow_white_24px.svg);
+      background-size: 80%;
+      background-position: center;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,0.35);
+      z-index: 2;
+    }
+
+    .videosphere-splash.pause {
+      background-image: url(icon/ic_pause_white_24px.svg);
+    }
+
+    .videosphere-splash.vrmode {
+      left: 25%;
+      top: 50%;
+      width: 50px;
+      height: 50px;
+      margin: -25px -25px auto auto;
+    }
+
+    .videosphere-splash.right {
+      left: 75%;
+      top: 50%;
+      display: none;
+    }
+
+    .videosphere-splash.right.vrmode {
+      display: block;
+    }
+
+    .videosphere-splash.hidden {
+      display: none !important;
+    }
+
+    .videosphere-splash-animation {
+      animation: videospheresplashanimation 400ms linear;
+    }
+
+    @keyframes videospheresplashanimation {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="location.href = location.href;" style="position:absolute;right:0;top:0;background:white;z-index:9999">refresh</button>
+  <a-assets>
+    <video id="video" src="media/dav-fam.mp4" loop></video>
+  </a-assets>
+  <a-scene>
+    <!-- camera & cursor -->
+    <a-entity camera no-click-look-controls="maxyaw:3.5; maxpitch:1.5">
+
+      <a-entity cursor="fuse: true;
+                        maxDistance: 30;
+                        timeout: 1000"
+                geometry="primitive: ring"
+                position="0 0 -1"
+                scale=".035 .035 .035"
+                material="color: white; shader: flat">
+      </a-entity>
+
+    </a-entity><!-- /.camera & cursor -->
+
+    <a-entity geometry="primitive: sphere;
+                        radius: 5000;
+                        segmentsWidth: 64;
+                        segmentsHeight: 64;"
+              material="shader: flat; src: #video;"
+              scale="-1 1 1" rotation="0 180 0" videospheremobile>
+    </a-entity>
+
+    <!-- warning sign -->
+    <a-entity id="dav-warning"
+      position="3 -1.5 9" rotation="0 -161 0"
+      geometry="primitive: plane; height: 2.2125; width: 2.5;"
+      material="src: url(img/warning.png) opacity: .5; transparent: true;">
+    </a-entity><!-- /.warning sign -->
+  </a-scene>
+
+  <script>
+    document.querySelector('#dav-warning').addEventListener('click', function () {
+      console.log('click dav warning');
+      alert('Here\'s your warning!')
+    });
+
+    document.querySelector('#dav-warning').addEventListener('mouseleave', function () {
+      console.log('leave dav warning');
+    });
+
+    // open new pages in home screen web app on iOS, not in mobile safari
+    (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")
+  </script>
+  
+</body>
+</html>
