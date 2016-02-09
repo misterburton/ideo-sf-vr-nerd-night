@@ -115,7 +115,7 @@ And comment out our `print.data.heading` line by adding a `#`, like this:
 # print data.heading
 ```
 
-_Note: Framer prototypes can be immediately viewed on your movile device via [Frameless](https://itunes.apple.com/us/app/id933580264) for iOS and [Framer](https://play.google.com/store/apps/details?id=com.framerjs.android) for Android. Simply connect your mobile device and Mac to the same Wi-Fi network. Select your project, and preview your prototype in full-screen._
+>_Note: Framer prototypes can be immediately viewed on your movile device via [Frameless](https://itunes.apple.com/us/app/id933580264) for iOS and [Framer](https://play.google.com/store/apps/details?id=com.framerjs.android) for Android. Simply connect your mobile device and Mac to the same Wi-Fi network. Select your project, and preview your prototype in full-screen._
 
 #### Framer.js References:
 
@@ -133,6 +133,12 @@ _Note: Framer prototypes can be immediately viewed on your movile device via [Fr
 1. Download Sublime Text 3 Trial [here](http://www.sublimetext.com/3) (or simply use whichever your preferred code editor)
 2. Download the project files we'll be workin from [here](https://github.com/misterburton/ideo-sf-vr-nerd-night/blob/master/assets/ideo-aframe-vr-nerd-night.zip?raw=true)
 3. Unzip the project files and drag the `ideo-aframe-vr-nerd-night` folder to the Sublime Text icon in either your dock or 'Applications' folder
+4. Open your Terminal app by pressing command + space to open Spotlight, then type 'terminal' and press return to launch the app
+5. In terminal, type `cd`, followed by a space, and drag & drop the `ideo-aframe-vr-nerd-night` folder into the terminal window. Press `return`
+6. Now, type `python -m SimpleHTTPServer` and press `return`
+7. Point your browser to `http://localhost:8000` — this is the browser window w/in which you will see our progress as we work
+
+> _Note: all we've done in steps 4-7 is tell Mac OS X to treat the `ideo-aframe-vr-nerd-night` folder as a web server._
 
 In Sublime Text, double-click both the `index.html` and `index-final.html` files in the sidebar. A review of the existing code shows we've added a `meta` tag for iOS home screen apps and imported a pair of JavaScript files:
 
@@ -173,9 +179,9 @@ Withing the two `body` tags, add the following lines to add our lookout image to
 </a-scene><!-- /.a-scene -->
 ```
 
-_Note: all of the markup for our VR scene will exist w/in the 2 `a-scene` tags._
+>_Note: all of the markup for our VR scene will exist w/in the 2 `a-scene` tags._
 
-Open `index.html` in your browser and click & drag to pan around the scene.
+Refresh the page at `http://localhost:8000/` — this is your `index.html` page — and click & drag to pan around the scene.
 
 #### Improving the Navigation:
 
@@ -281,7 +287,7 @@ A-frame VR Scene with spherical video using [no-click-look-controls](https://git
 
 [http://client.ideo.com/nerdnightvr/](http://client.ideo.com/nerdnightvr/)
 
-_Note: All of the code in this example is compiled from the above-linked, open source libraries and the A-frame [documentation](https://aframe.io/docs/guide/)._
+>_Note: All of the code in this example is compiled from the above-linked, open source libraries and the A-frame [documentation](https://aframe.io/docs/guide/)._
 
 
 ***
