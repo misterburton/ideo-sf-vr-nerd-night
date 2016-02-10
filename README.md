@@ -83,7 +83,7 @@ warningText = new VRLayer
 vr.projectLayer(warningText)
 ```
 
-Add `` and `fadeIn` states to affect our `warningText` layer:
+Add `fadeIn` and `fadeOut` states to affect our `warningText` layer:
 
 ```
 warningText.states.add
