@@ -79,6 +79,8 @@ warningText = new VRLayer
 	backgroundColor: 'rgba(0, 0, 0, .65)'
 	elevation: 1.5
 	heading: 15
+	
+vr.projectLayer(warningText)
 ```
 
 Add `` and `fadeIn` states to affect our `warningText` layer:
