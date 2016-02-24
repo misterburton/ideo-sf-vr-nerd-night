@@ -4,7 +4,7 @@
 
 ### Overview
 
-First, I'll cover a pair of approaches to creating multi-device, web-based, Virtual Reality prototypes via the new WebVR API. Then, Dav will walk us through his preferred editorial and effects pipeline for crafting VR motion content.
+First, [Burton Rast](http://misterburton.com/) will cover a pair of approaches to creating multi-device, web-based, Virtual Reality prototypes via the new WebVR API. Then, [Dav Rauch](http://davrauch.com/) will walk us through his preferred editorial and effects pipeline for crafting VR motion content.
 
 ***
 
@@ -281,11 +281,149 @@ This is, of course, a terrible user experience. To resolve this and ensure that 
 
 ### Act III: VR Editorial & Effects Pipeline w/ Dav Rauch
 
+#### Overview
+
+This tutorial is intended to guide you through the basics of:
+
+1. **Acquision** of photographic spherical content (in this case using the Ricoh Theta S camera)
+2. **Editorial** (in Premiere)
+3. **Effects/Titling/Color** (in After Effects)
+4. **Output** (via media encoder), and finally
+5. **Preparation** (metatagging) for online distribution which is discussed in Burton’s above tutorial
+
+_Note: this tutorial is written for Mac OS X._
+
+#### Ricoh Pipeline
+
+> Excerpts from [eleVR: The Complete Theta Tutorial](http://elevr.com/the-complete-theta-tutorial/)
+
+Capture as per manufacturer’s suggestions. transfer onto computer and convert to equirectangular footage.
+
+##### Software
+
+Download the [SphericalViewer.app](https://theta360.com/intl/support/download/pcapp/macosx) from [Ricoh Downloads](https://theta360.com/en/support/download/)
+
+If you see the below error:
+
+![](images/unidentified-developer.jpg)
+
+Open Mac OS X `System Preferences > Security > General` and make sure your settings allow you to run this app: 
+
+![](images/open-anyway.jpg)
+
+Next, if you’re using the current version of Adobe Air (which is very likely),  you’ll need to **uninstall Adobe Air and install an older version of it** (at least for now -- hopefully we can delete this step soon). you’ll know if you need to downgrade Adobe Air because you’ll get a bug in the Ricoh app which will prevent you from converting.
+
+**Now, finally, stitch footage into equirectangular format from raw source.**
+
+From this:
+
+![](images/two-circles.jpg)
+
+To this:
+
+![](images/dav-fam.jpg)
+
+Use the Ricoh Theta app to convert to equirectangular format (can batch process).
+
+If you see “decompressing video” with spinning circles, your app hasn’t crashed, it’s just that you don't see the dialog box. to find it, simply click anywhere on the Ricoh Theta App window and it should pop in front. 
+
+It should look like this with dialog box in front: 
+
+![](images/decompressing.jpg)
+
+Drag multiple or open multiple to batch convert, select output folder and hit “start:”
+
+![](images/converting.jpg)
+
+It would be nice if it was possible to convert to equirectangular and output using a lossless codec. But at this point we lose a generation. Bummer. I’ll complain to Ricoh. But perhaps there’s another way to convert using another tool? Not sure how much actual stitching is happening (which is computationally intense) and how much it’s just merging the footage, in which case there should be other ways to do it. 
+
+For good hygiene, I separate the newly generated footage at each step. This is because, through this process, you will generate a whopping FIVE versions of each clip that finds its way all the way through the pipeline! so here’s what my source folder looks like:
+
+![](images/folder-structure.jpg)
+
+#### Editorial Pipeline (Ricoh to Premiere)
+
+Edit as you typically would in Premiere.
+
+Drag equirectangular footage from bin onto the `New Sequence From Footage` icon in order to create new sequence with settings that match footage:
+
+![](images/my-new-sequence.jpg)
+
+You can organize your edited footage for export to After Effects by adding descriptions to you sequence naming convention. (just a suggestion)
+
+![](images/seqs.jpg)
+
+#### Effects & Titling Pipeline (Premiere to After Effects)
+
+##### Software & Resources
+
+* [SkyBox Studio](http://www.mettle.com/product/skybox-studio/) by [Mettle](http://www.mettle.com/) - SkyBox Studio is a bundle of scripts + plugins which create a workflow in After Effects and Premiere for working with spherical video. (it RULES). Here’s an [article](https://www.rocketstock.com/blog/creating-360-video-effects/) about it.
+* A 3rd party [YouTube tutorial](https://www.youtube.com/watch?v=pxNTFMtkxWU) on SkyBox
+and the very useful Mettle’s SkyBox tutorials
+* And the very useful [Mettle’s SkyBox tutorials](http://www.mettle.com/skybox-tutorials/)
+
+Import premiere trimmed sequences into after effects and create comp, just like in Premiere.
+
+![](images/create-new-composition.jpg)
+
+Precompose source for good hygiene:
+
+![](images/pre-compose.jpg)
+
+Rename + reorganize:
+
+![](images/comps-source.jpg)
+
+With source layer selected, run script SkyBox Extractor:
+
+![](images/skybox-extractor-menu.jpg)
+
+Uncheck if not using 3D plugins (it simplifies things):
+
+![](images/skybox-extractor.jpg)
+
+From here on out, you’ll do much better to follow the excellent [Mettle’s tutorials](http://www.mettle.com/skybox-tutorials/) from the Mettle site than to have me try to recreate them here. But suffice it to say that SkyBox will automatically create bunch of appropriately named comps which will allow you to edit, preview and output (see image below) your spherical video in a 3D environment that makes sense allowing you to do the kinds of things you like to do in after effects without twisting your brain around the crazy distortion inherent in the equirectangular format -- it takes care of the mindbending distortion for ya.
+
+![](images/skybox-output.jpg)
+
+#### Output Pipeline
+
+##### Output your High Res Master Files
+
+when you’re ready to output your footage for distribution, i would suggest outputting from Premiere or AE as close to a lossless pipeline as possible so that you have a lossless master, compressing to your desired format as a last step (or, almost last step). i would recommend proRes 422 or 444 as an super efficient and high quality compressor. 
+
+##### Compress Masters for Playback Device
+
+Once you’ve got your high res master files, then compress from Adobe Media Encoder using H264 preset with `match settings` selected. At this point your file **MUST** be in .MP4 format!
+
+I suggest keeping track of 3 versions of the same clips that you’ll generate by putting them into different folders, with a clear and simple and consisten naming convention like this:
+
+![](images/injected.jpg)
+
+Inject Spherical Metadata into your Compressed Files
+
+Finally, you’ll need to “inject” some simple metadata into your spherical video so that sites such as YouTube360 and Facebook recognize this footage as spherical and play it back appropriately (looking like you’re inside the sphere instead of looking at flat equirectangular footage). This is a fast and easy process. 
+
+Download [360 Video Metadata Tool](https://github.com/google/spatial-media/releases/download/v2.0/360.Video.Metadata.Tool.mac.zip) from the [Upload 360 degree videos page](https://support.google.com/youtube/answer/6178631?hl=en) 
+open file, check `spherical` box:
+
+![](images/spherical-metadata-injector.jpg)
+
+Save.
+
+Now you’re ready to post on YouTube360!
+
+##### YouTube Metadata + Upload Instructions
+
+[Upload 360 degree videos into YouTube](https://support.google.com/youtube/answer/6178631?hl=en)
+
+Or … upload to your online server and rock some of Burton’s code to host your new sherical experience from your own site! 
+
 ***
 
 ## Putting it all together
 
-A-frame VR Scene with spherical video using [no-click-look-controls](https://github.com/alexrkass/aframe-no-click-look-controls), [play button video fix](https://github.com/gtk2k/gtk2k.github.io/tree/master/aframe_videosphere) for iOS home screen web app, icon and interactivity:
+Interactive, A-frame VR Scene with spherical video using [no-click-look-controls](https://github.com/alexrkass/aframe-no-click-look-controls) and [play button video fix](https://github.com/gtk2k/gtk2k.github.io/tree/master/aframe_videosphere) for iOS (Be sure to add to home screen on iOS for the video to work as expected):
 
 [http://client.ideo.com/nerdnightvr/](http://client.ideo.com/nerdnightvr/)
 
@@ -296,7 +434,7 @@ A-frame VR Scene with spherical video using [no-click-look-controls](https://git
 
 ## Might I suggest …
 
-Most all of us learn best both by doing/making and by repetition. Head North to IDEO Production, rent out our new Ricoh spherical camera, snap some pics & video and use them in an A-frame or Framer VR prototype that you create.
+Most all of us learn best both by doing/making and by repetition. Head North to IDEO Production, rent out our new Ricoh spherical camera, snap some pics & video, follow Dav's above process to edit & title them and finally, use them in an A-frame or Framer VR prototype that you create.
 
 ## Also Worth noting
 
