@@ -37,6 +37,8 @@ window.onresize = ->
 
 _**Btw, wtf is a 'cube map?'**_
 
+Here's a [video](http://blog.framerjs.com/assets/static/images/vr/cube-full.mp4) that shows how the below image is mapped to a spherical, navigible scene.
+
 ![cube map](images/cube-map.png)
 
 #### Add an Icon:
