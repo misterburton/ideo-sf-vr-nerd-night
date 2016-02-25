@@ -1,6 +1,6 @@
-# IDEO SF VR Nerd Night in 3 Acts
+# IDEO SF VR Nerd Night in 3 Acts:
 
-## VR Prototyping x2 + VR Editorial & Effects Pipeline
+## VR Prototyping x 2 + VR Editorial & Effects Pipeline
 
 ### Overview
 
